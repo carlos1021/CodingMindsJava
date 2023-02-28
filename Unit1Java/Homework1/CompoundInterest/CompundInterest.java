@@ -7,7 +7,15 @@ public class CompoundInterest {
      *  should be 1. Throughout the assignment it is OK to assume that
      *  TARGETYEAR is >= THIS_YEAR. */
     static int numYears(int targetYear) {
-        ...
+        /*We're assuming that targetYear is greater than THIS_YEAR
+         * targetYear = 2030
+         * numYears(targetYear) ---> 7
+         * targetYear = 2025
+         * numYears(targetYear) ---> 2
+         * targetYear = 2073
+         * numYears(targetYear) ---> 50
+         */
+        return targetYear - THIS_YEAR;
     }
 
     /** Suppose we have an asset worth PRESENTVALUE that appreciates
@@ -24,7 +32,9 @@ public class CompoundInterest {
      *  of years from now until the target?
      */
     static double futureValue(double presentValue, double rate, int targetYear) {
-        ...
+        /*take presentValue and multiply by our rate of interest, given
+          the targetYear */
+        return presentValue*((1 + rate*0.01)**(numYears(targetYear)));
     }
 
     /** Returns the value, in THIS_YEAR dollars, of an asset
@@ -33,11 +43,13 @@ public class CompoundInterest {
      *  compounds annually at a constant rate of INFLATIONRATE.
      *
      *  For example, suppose PRESENTVALUE is 10, RATE is 12,
-     *  TARGETYEAR is 2022, and INFLATIONRATE is 3.
+     *  TARGETYEAR is 2024, and INFLATIONRATE is 3.
      *  In this case, the nominal value is 12.544. If we convert this into
-     *  2020 dollars, we get 12.544 * 0.97 * 0.97 = 11.8026496 dollars. */
-    static double futureValueReal(double presentValue, double rate, int targetYear, double inflationRate) {
-        ...
+     *  2023 dollars, we get 12.544 * 0.97 * 0.97 = 11.8026496 dollars. */
+    static double futureValueReal(double presentValue, double rate,
+           int targetYear, double inflationRate) {
+        return futureValue(presentValue, rate, targetYear)
+                    *((1 - inflationRate*0.01)**(numYears(targetYear)));
 
 
     }
