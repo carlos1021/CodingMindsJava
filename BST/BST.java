@@ -13,6 +13,12 @@ public class BST {
         }
     }
 
+    /**
+     * Finds a node with the given value in the binary search tree.
+     *
+     * @param val The value to search for.
+     * @return The node with the given value, or null if not found.
+     */
     public Node find(int val) {
         return findNode(root, val);
     }
@@ -29,7 +35,11 @@ public class BST {
         }
     }
 
-
+    /**
+     * Inserts a new node with the given value into the binary search tree.
+     *
+     * @param val The value to insert.
+     */
     public void insert(int val) {
         root = insertNode(root, val);
     }
@@ -48,7 +58,12 @@ public class BST {
         return node;
     }
 
-
+    /**
+     * Performs the bubble-up operation starting from the given node and value.
+     *
+     * @param node The starting node.
+     * @param val  The value to bubble up.
+     */
     private void bubbleUp(Node node, int val) {
         while (node != null && node.val != val) {
             if (val < node.val) {
@@ -61,6 +76,11 @@ public class BST {
         }
     }
 
+    /**
+     * Removes a node with the given value from the binary search tree.
+     *
+     * @param val The value to remove.
+     */
     public void remove(int val) {
         root = removeNode(root, val);
     }
@@ -90,6 +110,12 @@ public class BST {
         return node;
     }
 
+    /**
+     * Performs the bubble-down operation starting from the given node and child.
+     *
+     * @param node  The starting node.
+     * @param child The child node to bubble down.
+     */
     private void bubbleDown(Node node, Node child) {
         while (child != null) {
             if (child.val < node.val) {
@@ -104,6 +130,12 @@ public class BST {
         }
     }
 
+    /**
+     * Swaps the values between the parent and child nodes.
+     *
+     * @param parent The parent node.
+     * @param child  The child node.
+     */
     private void swap(Node parent, Node child) {
         if (parent == null || child == null) {
             return;
@@ -114,6 +146,12 @@ public class BST {
         child.val = temp;
     }
 
+    /**
+     * Finds the minimum value in the binary search tree rooted at the given node.
+     *
+     * @param node The root node of the tree.
+     * @return The minimum value in the tree.
+     */
     private int findMinimumValue(Node node) {
         int minVal = node.val;
         while (node.left != null) {
